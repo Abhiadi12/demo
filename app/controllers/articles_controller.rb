@@ -1,41 +1,42 @@
 class ArticlesController < ApplicationController
+	before_action :find_article_id , except: [:index,:new,:create]
+
+	def find_article_id
+		@article=Article.find(params[:id])
+	end
 
 	def index
-    @articles = Article.all#pointing out the entire article in our web app
+    @articles = Article.all
   	end
 	def new
-		 @article=Article.new#create the object of the model
+		 @article=Article.new
 	end
-	def show
-		@article=Article.find(params[:id]) #point out to the specific resource present in your article of the web app.it is found in the url after the resource name
+	def show	 
 	end
 	def create
-		#render plain:params[:article].inspect
-		# @article = Article.new(params[:article])#create the model give error
 		@article = Article.new(article_params)#more specific to the parameters
  
-  	if @article.save#store to the database , return true or false
+	  if @article.save#store to the database , return true or false
+		flash[:success] = "Article Created Successfully"
   		redirect_to @article # redirect to the show action or equivalent to article_path(@article)
 		else
 			render 'new' #render to the view temp new
 		end
 	end
 	def edit
-		@article=Article.find(params[:id])
+		
 	end
 
 	def update
 
-		@article = Article.find(params[:id])
- 
-  	if @article.update(article_params)
+	  if @article.update(article_params)
+		flash[:success] = "Article Created Successfully"
     	redirect_to @article
   	else
     	render 'edit'
   	end
 	end
 	def destroy
-		@article=Article.find(params[:id])
 		@article.destroy #delete the record from the  database
 
 		redirect_to articles_path #go to the index templete

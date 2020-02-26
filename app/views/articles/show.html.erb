@@ -1,3 +1,5 @@
+<!--<%= render './layouts/messages'%>
+<div class="show-detail">
 <p>
   <strong>Title:</strong>
   <%= @article.title %>
@@ -7,5 +9,21 @@
   <strong>Text:</strong>
   <%= @article.text %>
 </p>
+</div>
+<%= link_to 'Index',articles_path %>
+<%= link_to 'Home',root_path %>
+-->
+<div class="card">
+  <div class="card-header">
+    Article 
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"> 
+    <strong>Title:</strong>
+  <%= @article.title %>
+  </h5>
+    <p class="card-text"><%= @article.text %></p>
+  </div>
+</div>
 <%= link_to 'Index',articles_path %>
 <%= link_to 'Home',root_path %>
