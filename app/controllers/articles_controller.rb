@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
 	before_action :find_article_id , except: [:index,:new,:create]
+	before_action :require_user , only: [:edit,:update,:destroy]
 
 	def find_article_id
 		@article=Article.find(params[:id])
@@ -7,7 +8,7 @@ class ArticlesController < ApplicationController
 
 	def index
     @articles = Article.all
-  	end
+  end
 	def new
 		 @article=Article.new
 	end
@@ -15,9 +16,9 @@ class ArticlesController < ApplicationController
 	end
 	def create
 		@article = Article.new(article_params)#more specific to the parameters
- 
+		@article.user = current_user
 	  if @article.save#store to the database , return true or false
-		flash[:success] = "Article Created Successfully"
+			flash[:success] = "Article Created Successfully"
   		redirect_to @article # redirect to the show action or equivalent to article_path(@article)
 		else
 			render 'new' #render to the view temp new

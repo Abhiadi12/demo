@@ -1,0 +1,11 @@
+<% if @user == current_user %>
+<h1 align="center" style="color:red">Welcome to your page</h1>
+<% else %>
+<h1 align="center" style="color:red">Welcome to <%= @user.username %>'s page</h1>
+<% end %>
+<div class="avtar" align="center" style="margin:5px">
+<%= gravatar_for @user, size: 100 %>
+</div>
+<h4 align="center"><%= @user.username %>'s articles</h4>
+<%= render 'user-article', obj: @user.articles %>
+

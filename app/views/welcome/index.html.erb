@@ -1,5 +1,9 @@
+<% if is_login? %>
+<% redirect_to current_user %>
+<% else %>
 <div class="jumbotron">
-  <h1 class="display-4">Hello, User</h1>
-
-<%= link_to 'About',about_path %>
+  <h3 class="display-4">Welcome To Alpha Blog Website</h1>
+  <%= link_to ' Create Account ',signup_path,class:"btn btn-primary col-sm-2"%><br><br>
+  <%= link_to '  Login ',login_path,class:"btn btn-primary btn-lg col-sm-2"%>
 </div>
+<% end %>

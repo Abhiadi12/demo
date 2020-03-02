@@ -32,3 +32,32 @@
   h1{
       margin:10px
   }
+
+  .signup::before {
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    z-index: -1;
+    border-radius: 10px;
+}
+.signup-container{
+  margin-top:10px;
+  margin-bottom: 10px;
+}
+
+.article-info{
+  border:1px solid blue;
+  margin-left:15px;
+  padding-left: 2px;
+}
+.card{
+  padding:20px;
+}
+.listing {
+  list-style: none;
+  padding-left: 0;
+}

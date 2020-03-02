@@ -1,0 +1,16 @@
+<%= render './layouts/errormsg',obj:@user %>
+<%= render './layouts/messages'%>
+<div class="jumbotron container">
+ <%= form_for( @user, :html => {class: "justify-content-center signup", role: "form"}) do |f| %>
+
+        <div class="form-group">
+           Name: <%= f.text_field :username , class: "form-control", placeholder:"Enter User Name",autofocus:true%>
+        </div>
+        <div class="form-group">                 
+           Email: <%= f.email_field :email , class: "form-control", placeholder:"Enter Email",autofocus:true%>
+        </div>
+         
+        <%= f.submit "edit",class: 'btn btn-primary btn-lg' %>
+ <% end %>
+ <%=link_to " Change Password ",change_password_path%>
+</div>
