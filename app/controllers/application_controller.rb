@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   # the methods inside here available to the entire controller
   # t available that method in a view define method as helper method
-  helper_method :is_login?,:current_user,:redirect_to
+  attr_accessor:user_object # for get user id before login
+  helper_method :is_login?,:current_user,:redirect_to,:current_user
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -17,4 +18,19 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def is_email_exist?(value)
+    @user = User.where(email:value)
+    if @user.empty?
+      false
+    else
+      self.user_object = @user.take
+      true
+    end
+  end
+
+  def get_user_for_password_change_before_login
+    user_object
+  end
+
 end

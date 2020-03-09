@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-	before_action :find_article_id , except: [:index,:new,:create]
+	before_action :find_article_id , except: [:index,:new,:create,:comment]
 	before_action :require_user , only: [:edit,:update,:destroy]
 
 	def find_article_id
@@ -25,11 +25,9 @@ class ArticlesController < ApplicationController
 		end
 	end
 	def edit
-		
 	end
 
 	def update
-
 	  if @article.update(article_params)
 		flash[:success] = "Article Created Successfully"
     	redirect_to @article
@@ -37,12 +35,23 @@ class ArticlesController < ApplicationController
     	render 'edit'
   	end
 	end
+	
 	def destroy
 		@article.destroy #delete the record from the  database
 
 		redirect_to articles_path #go to the index templete
 
 	end
+
+	def comment
+
+		@article = Article.find(params[:article_id])
+		if @article.comments.create(description:params[:comment][:description],user:current_user)
+			redirect_to @article
+		end
+		
+	end
+
 	private
   	def article_params
     	params.require(:article).permit(:title, :text)

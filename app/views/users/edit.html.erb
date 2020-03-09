@@ -1,5 +1,6 @@
 <%= render './layouts/errormsg',obj:@user %>
 <%= render './layouts/messages'%>
+
 <div class="jumbotron container">
  <%= form_for( @user, :html => {class: "justify-content-center signup", role: "form"}) do |f| %>
 
@@ -12,5 +13,8 @@
          
         <%= f.submit "edit",class: 'btn btn-primary btn-lg' %>
  <% end %>
- <%=link_to " Change Password ",change_password_path%>
+ <%=link_to " Change Password ",change_password_path%><br>
+ <%= link_to 'Delete', user_path(@user),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
 </div>

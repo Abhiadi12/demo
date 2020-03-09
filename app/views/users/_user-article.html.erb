@@ -2,7 +2,6 @@
 
 <div class="card" align="center">
   <strong><%= link_to article.title, article_path(article) %></strong>
-  <p><%= truncate(article.text, length: 100) %></p>
   <% if article.user == current_user %>
   <div class="article-actions">
     <%= link_to "Edit this article", edit_article_path(article), class: "btn btn-sm btn-primary" %>
